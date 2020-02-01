@@ -1,12 +1,10 @@
 from deck import Deck
 from player import Player
+from game import Game
 
-pl = Player()
-a = Deck()
-a.shuffle()
-print(a)
-p = a.pop()
-pl.add_naipe(p)
-print(pl)
+
+g = Game()
+g.start()
+print(g)
 
 
