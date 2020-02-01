@@ -20,5 +20,9 @@ class Deck(object):
 
     def shuffle(self):
         random.shuffle(self.naipes)
+
+    def pop(self):
+        return self.naipes.pop(0)
+        
  
 
