@@ -1,4 +1,6 @@
 from naipe import Naipe
+import random
+
 class Deck(object):
     def __init__(self):
         self.naipes = []
@@ -9,9 +11,14 @@ class Deck(object):
             for c in colors:
                 for n in numbers:
                     self.naipes.append(Naipe(n,c,s))
+
     def __str__(self):
         res = ""
         for n in self.naipes:
             res = res + str(n) + " | "
         return res
-    
+
+    def shuffle(self):
+        random.shuffle(self.naipes)
+ 
+
