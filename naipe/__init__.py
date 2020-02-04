@@ -35,3 +35,5 @@ class Naipe(object):
                 res = res + "♣"
 
         return res
+    def __repr__(self):
+        return str(self)
