@@ -22,8 +22,8 @@ class Player(object):
         self.table = table
         total = self.hand + self.table
         total.sort(key = lambda x: x.number, reverse = False) #Ordena la lista "total" de menor a mayor (numero)
-        #for i in total:
-        #    print(i)
+        for i in total:
+            print(i)
 
         if Player.royal_straight_flush(total):
             return [10, total]
@@ -84,7 +84,6 @@ class Player(object):
         scoring = -1
         i = 0
         
-        print(len(cards))
         while i < (len(cards)):
             if color == -1:
                 color = cards[i].color
@@ -127,7 +126,19 @@ class Player(object):
     #Straight
     @staticmethod
     def straight(cards): #escalera
-        return False
+        scoring = -1
+        i = 0
+        
+        while i < (len(cards)):
+           
+            if scoring == -1:
+                scoring = cards[i].number
+            elif scoring != (cards[i].number - i):
+                if cards[i].number == 10 and cards[i-1].number != 1:
+                    return False
+            
+            i = i+1
+        return True
 
     #Three of a kind
     @staticmethod
