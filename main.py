@@ -7,7 +7,15 @@ from game import Game
 #g = Game()
 #g.start()
 #print(g)
-h = [Naipe(1,1,1), Naipe(1,0,1)]
-t = [Naipe(1,0,3), Naipe(2,1,2), Naipe(7,1,1)]
+
+#number, color, suit
+
+h = [Naipe(10,1,3), Naipe(11,1,3)]
+t = [Naipe(13,1,3), Naipe(12,1,3), Naipe(1,1,3)]
 p = Player()
-p.hand_scoring(h,t)
+scoring=p.hand_scoring(h,t)
+
+print(scoring)
+
+
+
