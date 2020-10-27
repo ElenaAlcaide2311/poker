@@ -11,7 +11,7 @@ from game import Game
 #number, color, suit
 
 h = [Naipe(10,1,3), Naipe(11,1,3)]
-t = [Naipe(13,1,3), Naipe(12,1,3), Naipe(1,1,3)]
+t = [Naipe(9,1,3), Naipe(12,1,3), Naipe(8,1,3)]
 p = Player()
 scoring=p.hand_scoring(h,t)
 

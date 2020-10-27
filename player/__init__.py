@@ -22,8 +22,8 @@ class Player(object):
         self.table = table
         total = self.hand + self.table
         total.sort(key = lambda x: x.number, reverse = False) #Ordena la lista "total" de menor a mayor (numero)
-        for i in total:
-            print(i)
+        #for i in total:
+        #    print(i)
 
         if Player.royal_straight_flush(total):
             return [10, total]
@@ -68,19 +68,41 @@ class Player(object):
                 color = cards[i].color
             elif cards[i].color != color:
                 return False
-            elif cards[i].suit != 3:
+            
+            if cards[i].suit != 3:
                 return False
-            elif cards[i].number < 10 & cards[i].number != 1:
+
+            if cards[i].number < 10 and cards[i].number != 1:
                 return False
             i = i+1
         return True
 
     @staticmethod
-    def straight_flush(cards): #escalera de color
+    def straight_flush(cards): #escalera de color y palo
         color = -1
+        suit = -1
+        scoring = -1
         i = 0
-        return False
-        #while i < (len(cards)):
+        
+        print(len(cards))
+        while i < (len(cards)):
+            if color == -1:
+                color = cards[i].color
+            elif cards[i].color != color:
+                return False
+
+            if suit == -1:
+                suit = cards[i].suit
+            elif cards[i].suit != suit:
+                return False
+            
+            if scoring == -1:
+                scoring = cards[i].number
+            elif scoring != (cards[i].number - i):
+                return False
+            
+            i = i+1
+        return True
 
     #Poker 4 cartas iguales valor
     @staticmethod
