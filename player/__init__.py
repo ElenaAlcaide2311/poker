@@ -83,7 +83,6 @@ class Player(object):
         suit = -1
         scoring = -1
         i = 0
-        
         while i < (len(cards)):
             if color == -1:
                 color = cards[i].color
@@ -116,38 +115,62 @@ class Player(object):
     #Full House (3 cartas del mismo y otras 2 de otro)
     @staticmethod
     def full_house(cards):
+        pair_1 = Player.pair(cards)
+        pair_2 = Player.pair(cards[::-1])
+        three_of_a_kind = Player.three_of_a_kind(cards)
+        if pair_1 and pair_2 and three_of_a_kind:
+            if pair_1[0].number != three_of_a_kind[0].number:
+                return pair_1 + three_of_a_kind
+            elif pair_2[0].number != three_of_a_kind[0].number:
+                return pair_2 + three_of_a_kind
+            else:
+                return False
         return False
 
     #color
     @staticmethod
     def flush(cards): #cartas del mismo color y palo
-        return False
+        i = 1
+        color = cards[0].color
+        suit = cards[0].suit
+        while i < len(cards):
+            if cards[i].color != color or cards[i].suit != suit:
+                return False
+            i = i+1
+        return True
 
     #Straight
     @staticmethod
     def straight(cards): #escalera
-        scoring = -1
         i = 0
-        
-        while i < (len(cards)):
-           
-            if scoring == -1:
-                scoring = cards[i].number
-            elif scoring != (cards[i].number - i):
-                if cards[i].number == 10 and cards[i-1].number != 1:
+        while i < (len(cards)-1):
+            if cards[i].number != cards[i+1].number -1:
+                if cards[i].number == 1 and cards[i+1].number == 10:
+                    i = i+1
+                    continue
+                else:
                     return False
-            
             i = i+1
         return True
 
     #Three of a kind
     @staticmethod
     def three_of_a_kind(cards): #3 cartas del mismo valor
+        i = 0
+        while i < (len(cards)-3):
+            if cards[i].number == cards[i+1].number and cards[i].number == cards[i+2].number:
+                return [cards[i],cards[i+1], cards[i+2]]
+            i = i + 1
         return False
 
     #Two Pair
     @staticmethod
     def double_pair(cards): #2 parejas
+        pair_1 = Player.pair(cards)
+        pair_2 = Player.pair(cards[::-1])#reverse array
+        if pair_1 and pair_2:
+            if pair_1[0].number != pair_2[0].number:
+                return pair_1 + pair_2
         return False
 
     #Pair
