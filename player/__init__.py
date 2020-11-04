@@ -1,29 +1,22 @@
 from naipe import Naipe
 
 class Player(object):
-    def __init__(self):
+    def __init__(self, name):
+        self.name = name
         self.hand = []
-        self.table = []
 
     def __str__(self):
-        res = ""
+        res = self.name+ " \n"
         for n in self.hand:
             res = res + str(n) + " | "
         return res
 
     def add_naipe(self, n):
         self.hand.append(n)
-
-    def set_table_cards(self, status):
-        self.table = status
         
-    def hand_scoring(self, hand, table):
-        self.hand = hand
-        self.table = table
-        total = self.hand + self.table
+    def hand_scoring(self, table):
+        total = self.hand + table
         total.sort(key = lambda x: x.number, reverse = False) #Ordena la lista "total" de menor a mayor (numero)
-        for i in total:
-            print(i)
 
         if Player.royal_straight_flush(total):
             return [10, total]
