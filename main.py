@@ -4,7 +4,10 @@ from player import Player
 from game import Game
 
 
-g = Game(2,1,2)
+
+players = [ Player("Player 1", 100), Player("Player 2", 100), Player("Player 3", 100)]
+
+g = Game(players,1,2)
 g.start()
 print(g)
 

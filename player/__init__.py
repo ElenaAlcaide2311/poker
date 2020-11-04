@@ -1,18 +1,26 @@
 from naipe import Naipe
 
 class Player(object):
-    def __init__(self, name):
+    def __init__(self, name, cash):
         self.name = name
+        self.cash = cash
         self.hand = []
 
     def __str__(self):
-        res = self.name+ " \n"
+        res = self.name+ " "+ str(self.cash) + "$ \n"
         for n in self.hand:
             res = res + str(n) + " | "
         return res
 
     def add_naipe(self, n):
         self.hand.append(n)
+
+    def bet(self, amount):
+        if self.cash >= amount:
+            self.cash = self.cash - amount
+            return amount
+        else:
+            return -1
         
     def hand_scoring(self, table):
         total = self.hand + table
